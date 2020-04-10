@@ -1,0 +1,43 @@
+{%extends "base1.html"%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{%block title%}Schedule{%endblock%}
+
+{%block 1%}
+
+<table class="table table-bordered" ">
+<tbody bgcolor="#009999">
+<div class='row'>
+<div class= 'col-sm-6 col-sm-offset-4'>
+<form method='POST' action='' class = "col-sm-8">{% csrf_token %}
+
+{{schedfor.as_table}}
+</tbody>
+
+</table>
+<table class="table table-bordered" >
+    <tbody bgcolor="#009999">
+    <tr>
+    <td>
+    <form method = 'GET' action ="deletesheds">{% csrf_token %}
+    <input type='submit' class="btn btn-primary btn-block btn-lg" value='Update' class="btn btn-primary"/>
+    </form>
+    </td>
+    <td>
+    <form method = 'GET' action =''>{% csrf_token %}
+    <input type="button" class="btn btn-primary btn-block btn-lg" value="Back" onclick="javascript:history.go(-1);" class="btn btn-primary"/>
+    </form>
+    </td>
+
+    
+    </tr>
+    
+   
+    </div>
+    </div>
+    </tbody>
+</table>
+
+{%endblock%}

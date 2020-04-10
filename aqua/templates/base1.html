@@ -1,0 +1,121 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Aquaponics Database</title>
+
+        
+           <!-- Base Css File -->
+        <link href='{% static "css/baseone.css" %}' rel="stylesheet">
+
+        <!-- Bootstrap Core CSS -->
+        <link href='{% static "css/bootstrap.min.css" %}' rel="stylesheet">
+
+
+        <!-- Custom CSS -->
+        <link href='{% static "css/sb-admin.css" %}' rel="stylesheet">
+
+        <!-- Responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Custom Fonts -->
+        <link href='{% static "font-awesome/css/font-awesome.min.css" %}' rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+        <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}"> 
+        <script type="text/javascript" src="{% static 'js/jquery-1.12.4.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>      
+        <script src="{% static 'js/jquery.timepicker.js' %}"></script>
+        <script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
+        <script>
+            $(function() {
+                $('#id_plant_time').timepicker({ 'timeFormat': 'H:i:s' }); 
+                    
+            });
+        </script>
+        <script>
+            $(function() {
+                $('#id_plant_date').datepicker();
+                $('#id_spawn_date').datepicker();
+                $('#id_reap_date').datepicker();
+                $('#id_date').datepicker();
+                
+            });
+        </script>
+
+        <!-- Django Text Field Widget -->
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+       
+
+    </head>
+
+    <body style="background-color:grey">
+       
+        <div class ="container">
+        <div class="panel panel-info">
+        <h1>
+        <ul class="nav nav-tabs">
+          <li role="presentation"><a href="{% url 'index' %}">Home</a></li>
+          <li role="presentation"><a href="{% url 'review' %}">Tables</a></li>
+          <li role="presentation"><a href="{%url 'forms' %}">Forms</a></li>
+          <li role="presentation"><a href="{% url 'review_h' %}">Harvest</a></li>
+          <li role="presentation"><a href="{% url 'harvestform' %}">Harvest Form</a></li>
+          <li role="presentation"><a href="#">Help</a></li>
+        </ul>
+        </h1>
+          <!-- Default panel contents -->
+          <div class="panel-heading " >
+          <table class="table">
+            <tr>
+                <td>
+                    <h1>{% block title %}Crops{%endblock%}</h1>
+                </td>
+                <td>
+                    <h1>{{today}}</h1>
+                </td>
+                 <td>
+			 <h1>Forecast: {{forecast}} <img src="{{icon}}"> </h1>
+                </td>
+            </tr>
+           </table>
+
+            </div>
+          
+          </div>
+          </div>
+        
+    
+    <div class="container">	  
+    {%block 1%}
+    <div class="col-sm-6">
+    </div>
+    {%endblock%}
+    </div>
+
+    {%block 2%}
+
+    {%endblock%}
+    
+   
+
+   
+    </body>
+
+    </html>

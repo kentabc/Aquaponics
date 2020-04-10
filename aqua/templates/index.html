@@ -1,0 +1,238 @@
+{%extends "base1.html"%}
+{% load staticfiles %}
+
+{%block title%}
+Home
+{%endblock%}
+
+{%block 1%}
+<div class=" bg-primary text-white">
+<h1><center>Dashboard</center></h1>
+</div>
+   <div class = "row">
+      <div class = "col-sm-6"><h1 class="bg-info">Schedules</h1>
+			<h2>Due in 5 days</h2>
+			<table class="table table-bordered">
+				<thead bgcolor="lightblue">
+						<tr>
+							<th>Task</th>
+							<th>Due Date</th>
+						</tr>
+    		</thead>
+				<tbody bgcolor="white">
+				{% for i in sched %}
+				{% if i.task_date <= fivedays and i.task_date > today %}
+				<tr>
+						<td>
+						<a href="{% url 'viewshed' id=i.id %}">{{i.task}}</a>
+						</td>
+						<td>
+						{{i.task_date}}
+						</td>
+				</tr>
+				{%endif%}
+				{%endfor%}
+				</tbody>
+			</table>
+			<h2>Due Today</h2>
+					<table class="table table-bordered">
+							<thead bgcolor="lightblue">
+							<th>Task</th>
+							<th>Due Date</th>
+							</thead>
+							<tbody bgcolor="white">
+							{% for i in sched %}
+							{% if i.task_date == today %}
+							<tr>
+							<td>
+							<a href='{{i.get_absolute_url}}'>{{i.task}}</a>
+							</td>
+							<td>
+							{{i.task_date}}
+							</td>
+							</tr>
+							{%endif%}
+							{%endfor%}
+					</tbody>
+					</table>
+
+					<h2>Missed Schedule</h2>
+							<table class="table table-bordered">
+									<thead bgcolor="lightblue">
+									<th>Task</th>
+									<th>Due Date</th>
+									</thead>
+									<tbody bgcolor="white">
+									{% for i in sched %}
+									{% if i.task_date < today %}
+									<tr>
+									<td>
+									<a href='{{i.get_absolute_url}}'>{{i.task}}</a>
+									</td>
+									<td>
+									{{i.task_date}}
+									</td>
+									</tr>
+									{%endif%}
+									{%endfor%}
+									</tbody>
+							</table>
+			<table  class="table table-borderless">
+					<tr>
+					<th>
+					<a href="{% url 'schedules' %}", style="color: rgb(0,255,255)">Schedule</a>
+					</th>
+					<th>
+					<a href="{% url 'tasks' %}", style="color: rgb(0,255,255)">Task</a>
+					</th>
+					</tr>
+			</table>
+
+			</div>
+      <div class = "col-sm-6"><h1 class="bg-info">Live Feed</h1>
+			<center><img src= {% static "images/" %}{{pic}} class="img-thumbnail"></center>
+			<center><a href="{% static 'images/timelapse.gif' %}" style="color: rgb(0,255,255)">Time Lapse</a></center>
+
+			</div>
+   </div>
+   
+   <div class = "row">
+      <div class = "col-sm-6"><h1 class="bg-info">Water Test</h1>
+			<table class="table table-boarded">
+					<thead class = "tthead", bgcolor="lightblue">
+							<tr  class="ttr">
+
+
+								<th class="tth">Test Date</th>
+								<th class="tth">PH</th>
+								<th class="tth">Amonia(PPM)</th>
+								<th class="tth">Nitrite(PPM)</th>
+								<th class="tth">Nitrate(PPM)</th>
+
+							</tr>
+					</thead>
+							<tbody class="ttbody", bgcolor="white">
+							{%for water in quality%}
+
+							<tr  class="ttr">
+								<td class="ttd">{{water.test_date}}</td>
+								<td class="ttd">{{water.ph}}</td>
+								<td class="ttd">{{water.amonia}}</td>
+								<td class="ttd">{{water.nitrite}}</td>
+								<td class="ttd">{{water.nitrate}}</td>
+							</tr>
+
+							{%endfor%}
+							</tbody>
+					</table>
+					<table class="table table-borderless">
+							<tr>
+								<th><a href="{% url 'testwater' %}", style="color: rgb(0,255,255)">Enter Test</a></th>
+								<th><center><a href="{% url 'watergraph' %}", style="color: rgb(0,255,255)">Graphs</a></center></th>
+							</tr>
+					</table>
+			
+			</div>
+      <div class = "col-sm-6"><h1 class="bg-info">System Notes</h1>
+			<table class="table table-boarded" style="width:100%">
+					<tr>
+					<thead class = "tthead", bgcolor="lightblue">
+					<tr class="ttr">
+
+					<form method ='GET' action=''>
+					<div class="input-group">
+							<input type="text" name='q' class="form-control" placeholder="Search Note" value='{{ request.GET.q}}'/>
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+					</form>
+
+					</tr>
+					<tr class="ttr">
+					<th class="tth1">Title</th>
+					<th class="tth1">Note</th>
+					</tr>
+					</thead>
+					</tr>
+					<tbody class="ttbody1", bgcolor="white">
+					{%for i in noteinfo%}
+					<tr class="ttr">
+					<td class="ttd1">
+					<a href="{% url 'viewnotes' id=i.id %}">{{i.title}}</a>
+					</td>
+					<td class="ttd1">
+					{{i.notes|safe|truncatechars:40}}
+
+					</td>
+					</tr>
+					{%endfor%}
+					</tbody>
+				</table>
+				<table class="table table-borderless">
+				<tr>
+					<th><a href="{% url 'systemnotes' %}", style="color: rgb(0,255,255)">Enter Note</a></th>
+				</tr>
+				</table>
+			</div> 
+   </div>
+   
+   <div class = "row">
+	 		<div class = "col-sm-6"><h1 class="bg-info">Fish Data</h1>
+			  <table class="table table-boarded">
+					<thead class = "tthead", bgcolor="lightblue">
+					<tr  class="ttr">
+						<th class="tth">Group</th>
+						<th class="tth">Date Added</th>
+						<th class="tth">Amount</th>
+						<th class="tth">Fish Type</th>
+						<th class="tth">Age</th>
+
+					</tr>
+					</thead>
+					<tbody class="ttbody", bgcolor="white">
+					{%for fish in fishdata%}
+
+					<tr class="ttr">
+						<td class="ttd">{{fish.crop}}</td>
+						<td class="ttd">{{fish.spawn_date}}</td>
+						<td class="ttd">{{fish.batch}}</td>
+						<td class="ttd">{{fish.fish_type}}</td>
+						<td class="ttd">{{fish.spawn_date|timesince:today }}</td>
+												
+					</tr>
+
+					{%endfor%}
+					</tbody>
+				</table>
+
+			 
+			 </div>
+      <div class = "col-sm-6"><h1 class="bg-info">Live Data</h1>
+			<table class="table table-striped">
+			<thead  bgcolor="lightblue">
+			<tr class="ttr">
+				<th class="tth"><center>Refresh Page to update data</center></th>
+			</tr>
+			</thead>
+			<tbody  class="ttbody", bgcolor="white">
+			<tr class="ttr">
+				<td><h3>Water Level Drop: {{foot}} feet - {{inches}} inches</h3></td>
+			</tr>
+			<tr class="ttr">
+				<td><h3>Atmosphere Temperature: {{temp_c}}&deg;C - {{temp_f}}&deg;F</h3></td>
+			</tr>
+			<tr class="ttr">
+				<td><h3>Water Temperature: {{temp_c1}}&deg;C - {{temp_f1}}&deg;F</h3></td>
+			</tr>
+			<tr class="ttr">
+				<td><h3>Weather Forecast: {{forecast}} <img src="{{icon}}"> </h3></td>
+			</tr>
+			</tbody>
+			</table>
+			
+
+			</div> 
+	 </div>
+{%endblock%}

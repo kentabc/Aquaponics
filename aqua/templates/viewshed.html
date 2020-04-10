@@ -1,0 +1,67 @@
+{%extends "base1.html"%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{%block title%}System Notes{%endblock%}
+
+{%block 1%}
+ 
+
+<table class="table table-bordered " >
+<tbody bgcolor="#009999">
+<tr>
+<td>
+<h3>
+<table class="table table-bordered " >
+<tr bgcolor="green">
+<th>ID</th><td>{{shedinstance.id}}</td>
+</tr>
+<tr>
+<th>Task</th><td><b><i>{{shedinstance.task}}</i></b></td>
+</tr>
+<tr>
+<th>Start Date</th><td>{{shedinstance.date}}</td>
+</tr>
+<tr>
+    <th>Due Date</th><td>{{shedinstance.task_date}}</td>
+    </tr>
+    <tr>
+        <th>Duration</th><td>{{shedinstance.duration}} Days</td>
+    </tr>
+    <tr>
+        <th>Completed</th><td>{{shedinstance.completed |yesno:"Yes,No" }}</td>
+    </tr>
+    <tr>
+        <th>Comment</th><td>{{shedinstance.comment}}</td>
+    </tr>
+</table>
+</h3>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<table class="table table-bordered" >
+<tbody bgcolor="#009999">
+<tr>
+<td>
+<form method = 'POST' action =''>{% csrf_token %}
+<input type="button" class="btn btn-primary btn-block btn-lg" value="Back" onclick="javascript:history.go(-1);" class="btn btn-primary"/>
+</form>
+</td>
+<td>
+<form method = 'GET' action ="scheduleform">{% csrf_token %}
+<button type="submit" class="btn btn-primary btn-block btn-lg">Edit</button>
+</form>
+</td>
+<td>
+<form method = 'GET' action ='deletescheds'>{% csrf_token %}
+<button type="submit" class="btn btn-primary btn-block btn-lg">Delete</button>
+</form>
+</td>
+</tr>
+</tbody>
+</table>
+{%endblock%}

@@ -1,0 +1,50 @@
+{%extends "base1.html"%}
+{% load staticfiles %}
+
+{%block title%}
+<h1>Harvest Details</h1>
+{%endblock%}
+
+{%block 1%}
+<table class="table table-bordered" >
+<tbody bgcolor="#009999">
+<tr>
+<td>
+
+<table class="table table-bordered table-hover ">
+<th>ID</th>
+<th>Plant</th>
+<th>Fish</th>
+<th>Amount Reaped</th>
+<th>Reap Date</th>
+<th>Complete Date</th>
+<th>Comment</th>
+
+{%for i in harvest%}
+	<tr>
+		<td>{{i.id}}</td>
+		<td>{{i.plant}}</td>
+		<td>{{i.fish}}</td>
+		<td>{{i.amount_reaped}}</td>
+		<td>{{i.reap_date}}</td>
+		<td>{{i.harvest_complete}}</td>
+		<td>{{i.comment}}</td>
+
+	</tr>
+		
+{%endfor%}
+</table>
+<br>
+<br>
+</td>
+<td>
+
+
+<center><img src= {% static "images/fruits_vegetables.jpg" %} class="img-thumbnail"></center>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+{%endblock%}

@@ -1,0 +1,36 @@
+{%extends "base1.html"%}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{%block title%}
+Crops
+{%endblock%}
+{%block 1%}
+<table class = "table table-bordered" > 
+<tbody bgcolor="#009999">
+<tr>
+<td>
+
+<table class="table" >
+<th><h1><a href="{% url 'forms' %}">Plants</a></h1></th>
+<th><h1><a href="{% url 'fishform' %}">Fishes</a></h1></th>
+</table>
+<hr>
+<br>
+<form method = 'POST' action =''>{% csrf_token %}
+
+{{fishformm|crispy}}
+
+<br>
+<button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+</form>
+</td>
+<td>
+<br><br><br><br><br><br>
+<center>
+<img src= {% static "images/nile_tilapia.jpg" %} class="img-thumbnail" >
+</center>
+</td>
+</tr>
+</tbody>
+</table>
+{%endblock%}

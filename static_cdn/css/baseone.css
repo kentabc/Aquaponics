@@ -1,0 +1,77 @@
+.trx{
+  overflow-y: scroll;
+  height: 200px;
+  width: 97%;
+  position: absolute;
+}
+
+.header-fixed {
+    position: fixed;
+    
+    background-color:white;
+}
+/* New CSS */
+
+.scrollit {
+    overflow:scroll;
+    height:500px;
+}
+
+.scrollable {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+
+/* for scroll bar*/
+
+
+.ttable {
+        width: 100%;
+    }
+
+.tthead, .ttbody, .ttr, .ttd, .tth , .ttbody1, .ttd1, .tthead1, .tth1 { display: block; }
+
+.ttr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+
+}
+
+.tthead .tth {
+    height: 40px;
+   
+
+
+    /*text-align: left;*/
+}
+
+
+
+.ttbody {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.ttbody1 {
+    height: 267px;
+    overflow-y: auto;
+}
+
+.tthead {
+    /* fallback */
+}
+
+
+.ttbody .ttd, .tthead .tth {
+    width: 20%;
+    float: left;
+}
+
+.ttbody1 .ttd1, .tthead1, .tth1 {
+    width: 50%;
+    float: left;
+}
+

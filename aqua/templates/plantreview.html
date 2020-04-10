@@ -1,0 +1,31 @@
+{%extends "base.html"%}
+
+{%block form_title%}
+<h1>Tables</h1>
+{%endblock%}
+{%block 1%}
+<h1>Plants</h1>
+
+<table class="table table-bordered table-hover">
+<th>ID</th>
+<th>Crop</th>
+<th>Plant</th>
+<th>Amount</th>
+<th>Plant Date</th>
+<th>Details</th>
+
+{%for i in plantt%}
+	<tr>
+		<td>{{i.id}}</td>
+		<td>{{i.crop}}</td>
+		<td>{{i.plant_type}}</td>
+		<td>{{i.amount}}</td>
+		<td>{{i.plant_date}}</td>
+		<td>{{i.comment}}</td>
+
+	</tr>
+		
+{%endfor%}
+</table>
+
+{%endblock%}

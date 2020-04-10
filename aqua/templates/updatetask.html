@@ -1,0 +1,30 @@
+{%extends "base1.html"%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{%block title%}Task{%endblock%}
+
+{%block 1%}
+
+<table class="table table-bordered" style="width:70%">
+<div class='row'>
+<div class= 'col-sm-6 col-sm-offset-4'>
+<form method='POST' action='' class = "col-sm-8">{% csrf_token %}
+
+{{taskfor.as_table}}
+
+<tr>
+<td>
+<input type='submit' class="btn btn-primary btn-block btn-lg" value='Update' class="btn btn-primary"/>
+</td>
+<td>
+<input type="button" class="btn btn-primary btn-block btn-lg" value="Back" onclick="javascript:history.go(-1);" class="btn btn-primary"/>
+</td>
+</tr>
+
+</form>
+</div>
+</div>
+</table>
+{%endblock%}

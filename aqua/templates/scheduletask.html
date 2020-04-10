@@ -1,0 +1,60 @@
+{%extends "base1.html"%}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+
+{%block title%}Task{%endblock%}
+
+{%block 1%}
+<div class = "d-inline p-2 bg-primary text-white">
+<h1> Add Task</h1>
+</div>
+<table class="table table-bordered">
+<tbody bgcolor="#009999">
+<div class='row'>
+<div class= 'col-sm-6 col-sm-offset-4'>
+<form method='POST' action='' class = "col-sm-8">{% csrf_token %}
+{{formtask.as_table}}
+<tr>
+<td>
+<input type='submit' class="btn btn-primary btn-block btn-lg" value='Save' class="btn btn-primary"/>
+</td>
+<td>
+<input type="button" class="btn btn-primary btn-block btn-lg" value="Back" onclick="javascript:history.go(-1);" class="btn btn-primary"/>
+</td>
+</tr>
+
+</form>
+</div>
+</div>
+</tbody>
+</table>
+
+<div class = "d-inline p-2 bg-primary text-white">
+<h1>Browse Task</h1>
+</div>
+<table class="table table-bordered">
+<tbody bgcolor="#009999">
+<tr>
+<td>Task Name</td>
+<td>Description</td>
+
+</tr>
+
+{% for i in work %}
+
+<tr>
+<td>
+<a href="{% url 'taskfrm' id=i.id%}", style="color: rgb(0,255,255)">{{i.name}}</a>
+</td>
+<td>
+{{i.description}}
+</td>
+</tr>
+
+
+{%endfor%}
+
+</tbody>
+</table>
+{%endblock%}
