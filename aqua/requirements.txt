@@ -1,7 +1,7 @@
 certifi==2019.6.16
 chardet==3.0.4
 cycler==0.10.0
-Django==1.9
+Django==2.2.24
 django-bootstrap3==11.1.0
 django-ckeditor==5.7.1
 django-crispy-forms==1.7.2
@@ -32,7 +32,7 @@ colorzero==1.1
 configparser==3.5.0b2
 cookies==2.2.1
 cryptography==2.6.1
-Django==1.9
+Django==2.2.24
 django-ckeditor==5.7.1
 django-crispy-forms==1.7.2
 django-js-asset==1.2.2
